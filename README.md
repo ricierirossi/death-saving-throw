@@ -18,4 +18,4 @@ As a D&D Dungeon's Master (DM), I enjoy rolling DST for my player myself. So, I 
 ## Stack
 
 -   Vue 3
--
+-   Tailwind CSS
