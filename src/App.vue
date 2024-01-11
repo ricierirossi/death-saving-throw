@@ -1,47 +1,33 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import StatusTable from "./components/StatusTable.vue";
+import ButtonSection from "./components/ButtonSection.vue";
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <div class="h-screen bg-lava bg-cover bg-bottom p-5">
+        <header>
+            <h1 class="text-4xl">Saving Death Throw</h1>
+        </header>
+        <main class="mt-8 px-8 py-4 bg-transparent-black text-zinc-300">
+            <div class="flex justify-between">
+                <section>
+                    <StatusTable />
+                    <span class="material-symbols-outlined">add_circle</span>
+                </section>
+                <section>
+                    <ButtonSection />
+                </section>
+            </div>
+        </main>
+        <footer class="absolute bottom-0 text-white">
+            <a
+                href="https://br.freepik.com/vetores-gratis/vulcao-quente-da-paisagem-com-fluxo-de-lava_25377031.htm#query=background%20site%20rpg&position=0&from_view=search&track=ais&uuid=219049bc-68f4-4fbf-bd76-9dacdce33838"
+                target="_blank"
+                >Image by gstudioimagen1</a
+            >
+            on Freepik
+        </footer>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+<style scoped></style>
