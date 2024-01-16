@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 
 export const useStatusStore = defineStore("savings", {
     state: () => ({
+        // ! Remove mocked data
         characters: [
             {
                 id: 0,
@@ -9,6 +10,7 @@ export const useStatusStore = defineStore("savings", {
                 failures: 2,
                 successess: 2,
                 status: "Risky",
+                checked: false,
             },
             {
                 id: 1,
@@ -16,6 +18,7 @@ export const useStatusStore = defineStore("savings", {
                 failures: 3,
                 successess: 2,
                 status: "Dead",
+                checked: false,
             },
             {
                 id: 2,
@@ -23,6 +26,7 @@ export const useStatusStore = defineStore("savings", {
                 failures: 0,
                 successess: 3,
                 status: "Alive",
+                checked: false,
             },
             {
                 id: 3,
@@ -30,6 +34,7 @@ export const useStatusStore = defineStore("savings", {
                 failures: 0,
                 successess: 0,
                 status: "",
+                checked: false,
             },
         ],
     }),
@@ -47,11 +52,26 @@ export const useStatusStore = defineStore("savings", {
                 ? this.characters[characterKey].successess++
                 : "";
         },
+        clearSomeSavings() {
+            this.characters.forEach((character) => {
+                if (character.checked === true) {
+                    character.failures = 0;
+                    character.successess = 0;
+                    character.status = "";
+                    character.checked = false;
+                }
+            });
+        },
         clearAllSavings() {
             this.characters.forEach((character) => {
                 character.failures = 0;
                 character.successess = 0;
+                character.status = "";
             });
+        },
+        checkboxStatus(characterID) {
+            this.characters[characterID].checked =
+                !this.characters[characterID].checked;
         },
     },
     getters: {
