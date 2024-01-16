@@ -9,6 +9,7 @@
         </button>
         <button
             class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md col-start-1"
+            @click="clearSomeSavings"
         >
             Clear
         </button>
@@ -29,6 +30,10 @@
 import { useStatusStore } from "../../stores/StatusStore";
 
 const statusStore = useStatusStore();
+
+const clearSomeSavings = () => {
+    statusStore.clearSomeSavings();
+};
 
 const clearAll = () => {
     statusStore.clearAllSavings();
