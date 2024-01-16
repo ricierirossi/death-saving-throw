@@ -41,6 +41,11 @@
                     >
                         +1 Success
                     </button>
+                    <input
+                        type="checkbox"
+                        :checked="character.checked"
+                        @click="changeCheckbox(character.id)"
+                    />
                 </div>
             </div>
         </div>
@@ -49,11 +54,11 @@
                 type="text"
                 placeholder="Insert character name"
                 class="text-zinc-300 bg-transparent border-b-2"
-                v-model="charName"
+                v-model="characterName"
             />
             <span
                 class="material-symbols-outlined hover:cursor-pointer"
-                @click="insertChar"
+                @click="insertCharacter"
                 >add_circle</span
             >
         </div>
@@ -64,19 +69,20 @@ import { useStatusStore } from "../../stores/StatusStore";
 import { ref } from "vue";
 
 const statusStore = useStatusStore();
-const charName = ref("");
+const characterName = ref("");
 
-const insertChar = () => {
-    if (charName.value) {
+const insertCharacter = () => {
+    if (characterName.value) {
         statusStore.addCharacter({
             id: new Date(Date.now()).getTime(),
-            name: charName.value,
+            name: characterName.value,
             failures: 0,
             successess: 0,
             status: "",
+            checked: false,
         });
     }
-    charName.value = "";
+    characterName.value = "";
 };
 
 const addFailure = (characterKey) => {
@@ -85,5 +91,9 @@ const addFailure = (characterKey) => {
 
 const addSuccess = (characterKey) => {
     statusStore.addCharacterSuccess(characterKey);
+};
+
+const changeCheckbox = (characterID) => {
+    statusStore.checkboxStatus(characterID);
 };
 </script>
