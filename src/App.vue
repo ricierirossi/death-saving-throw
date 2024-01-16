@@ -32,5 +32,3 @@ import ButtonSection from "./components/ButtonSection.vue";
         </footer>
     </div>
 </template>
-
-<style scoped></style>
