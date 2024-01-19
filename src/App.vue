@@ -1,10 +1,11 @@
 <script setup>
 import StatusTable from "./components/StatusTable.vue";
+import StatusTableD from "./components/StatusTableD.vue";
 import ButtonSection from "./components/ButtonSection.vue";
 </script>
 
 <template>
-    <div class="h-screen bg-lava bg-cover bg-bottom p-5">
+    <div class="h-screen bg-lava bg-cover bg-bottom py-5 px-2">
         <header>
             <h1 class="text-4xl text-gray-500 text-">Saving Death Throw</h1>
         </header>
@@ -12,7 +13,8 @@ import ButtonSection from "./components/ButtonSection.vue";
             <div
                 class="w-full flex flex-col md:flex-row md:justify-center md:gap-10"
             >
-                <StatusTable />
+                <!-- <StatusTable /> -->
+                <StatusTableD />
                 <ButtonSection />
             </div>
         </main>
