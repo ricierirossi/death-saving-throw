@@ -2,11 +2,17 @@
     <div
         class="grid grid-cols-2 gap-x-2 gap-y-4 mt-4 px-8 py-4 rounded-md bg-transparent-black text-zinc-300 md:mt-0"
     >
-        <button
-            class="bg-blue-900 hover:bg-blue-800 py-2 px-4 rounded-md col-start-1 col-span-2"
-        >
-            Saving Throw
-        </button>
+        <div class="grid col-start-1 col-span-2">
+            <button
+                class="bg-blue-900 hover:bg-blue-800 py-2 px-4 rounded-md"
+                @click="rollDice"
+            >
+                Saving Throw
+            </button>
+            <span class="text-center">
+                {{ diceThrow }}
+            </span>
+        </div>
         <button
             class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md col-start-1"
             @click="clearSomeSavings"
@@ -21,15 +27,18 @@
         </button>
         <button
             class="bg-red-900 hover:bg-red-800 py-2 px-4 rounded-md col-start-1 col-span-2"
+            @click="removeCharacters"
         >
-            Remove Player
+            Remove Character
         </button>
     </div>
 </template>
 <script setup>
 import { useStatusStore } from "../../stores/StatusStore";
+import { ref } from "vue";
 
 const statusStore = useStatusStore();
+const diceThrow = ref("");
 
 const clearSomeSavings = () => {
     statusStore.clearSomeSavings();
@@ -37,5 +46,13 @@ const clearSomeSavings = () => {
 
 const clearAll = () => {
     statusStore.clearAllSavings();
+};
+
+const removeCharacters = () => {
+    statusStore.deleteCharacters();
+};
+
+const rollDice = () => {
+    diceThrow.value = Math.ceil(Math.random() * 20);
 };
 </script>
