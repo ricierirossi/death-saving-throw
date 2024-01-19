@@ -40,13 +40,13 @@
                     <span>{{ character.status }}</span>
                     <div>
                         <button
-                            class="bg-red-900 rounded-md hover:bg-red-800 text-sm min-w-20 min-h-6"
+                            class="bg-red-900 rounded-md hover:bg-red-800 text-sm min-w-20 min-h-10"
                             @click="addFailure(key)"
                         >
                             +1 Failure
                         </button>
                         <button
-                            class="bg-green-900 rounded-md hover:bg-green-800 text-sm min-w-20 min-h-6"
+                            class="bg-green-900 rounded-md hover:bg-green-800 text-sm min-w-20 min-h-10"
                             @click="addSuccess(key)"
                         >
                             +1 Success
@@ -56,6 +56,7 @@
                         <input
                             type="checkbox"
                             :checked="character.checked"
+                            class="w-12 h-12"
                             @click="changeCheckbox(character.id)"
                         />
                     </div>
