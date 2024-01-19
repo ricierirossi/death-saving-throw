@@ -70,8 +70,16 @@ export const useStatusStore = defineStore("savings", {
             });
         },
         checkboxStatus(characterID) {
-            this.characters[characterID].checked =
-                !this.characters[characterID].checked;
+            this.characters.forEach((character) => {
+                if (character.id === characterID) {
+                    character.checked = !character.checked;
+                }
+            });
+        },
+        deleteCharacters() {
+            this.characters = this.characters.filter((character) => {
+                return character.checked === false;
+            });
         },
     },
     getters: {
