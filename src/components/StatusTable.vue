@@ -1,6 +1,6 @@
 <template>
     <div class="px-8 py-4 rounded-md bg-transparent-black text-zinc-300">
-        <div class="grid">
+        <div>
             <div class="grid grid-cols-7 text-center">
                 <span>Character</span>
                 <span>Failures</span>
