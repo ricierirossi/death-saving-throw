@@ -2,7 +2,6 @@
     <div class="px-8 py-4 rounded-md bg-transparent-black text-zinc-300">
         <div class="grid">
             <div class="grid grid-cols-7 text-center">
-                <span></span>
                 <span>Character</span>
                 <span>Failures</span>
                 <span>Successes</span>
@@ -55,6 +54,7 @@
                 placeholder="Insert character name"
                 class="text-zinc-300 bg-transparent border-b-2"
                 v-model="characterName"
+                @keyup.enter="insertCharacter"
             />
             <span
                 class="material-symbols-outlined hover:cursor-pointer"
