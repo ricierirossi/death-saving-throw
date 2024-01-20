@@ -11,8 +11,10 @@ As a D&D Dungeon's Master (DM), I enjoy rolling DST for my players myself. So, I
 ## Features
 
 -   Add unlimited players
+-   Remove players
+-   Roll saving throw die
 -   Mark all failures and sucessess on DSTs
--   Player status (risk of death, dead and alive)
+-   Player status (risky, dead, alive and a famous cat)
 -   Clear one or all DSTs
 
 ## Stack
