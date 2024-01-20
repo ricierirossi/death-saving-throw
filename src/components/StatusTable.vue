@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex mt-6 gap-x-3 bg-slate-800 py-2 px-4 rounded-md">
+        <!-- <div class="flex mt-6 gap-x-3 bg-slate-800 py-2 px-4 rounded-md">
             <input
                 type="text"
                 placeholder="Insert character name"
@@ -59,7 +59,7 @@
                 @click="insertCharacter"
                 >add_circle</span
             >
-        </div>
+        </div> -->
     </div>
 </template>
 <script setup>
@@ -67,22 +67,22 @@ import { useStatusStore } from "../../stores/StatusStore";
 import { ref } from "vue";
 
 const statusStore = useStatusStore();
-const characterName = ref("");
+// const characterName = ref("");
 const selected = ref(false);
 
-const insertCharacter = () => {
-    if (characterName.value) {
-        statusStore.addCharacter({
-            id: new Date(Date.now()).getTime(),
-            name: characterName.value,
-            failures: 0,
-            successess: 0,
-            status: "",
-            selected: false,
-        });
-    }
-    characterName.value = "";
-};
+// const insertCharacter = () => {
+//     if (characterName.value) {
+//         statusStore.addCharacter({
+//             id: new Date(Date.now()).getTime(),
+//             name: characterName.value,
+//             failures: 0,
+//             successess: 0,
+//             status: "",
+//             selected: false,
+//         });
+//     }
+//     characterName.value = "";
+// };
 
 const selectCharacter = (characterID) => {
     selected.value = !selected.value;
