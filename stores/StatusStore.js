@@ -10,7 +10,7 @@ export const useStatusStore = defineStore("savings", {
                 failures: 2,
                 successess: 2,
                 status: "Risky",
-                checked: false,
+                selected: false,
             },
             {
                 id: 1,
@@ -18,7 +18,7 @@ export const useStatusStore = defineStore("savings", {
                 failures: 3,
                 successess: 2,
                 status: "Dead",
-                checked: false,
+                selected: false,
             },
             {
                 id: 2,
@@ -26,7 +26,7 @@ export const useStatusStore = defineStore("savings", {
                 failures: 0,
                 successess: 3,
                 status: "Alive",
-                checked: false,
+                selected: false,
             },
             {
                 id: 3,
@@ -34,7 +34,7 @@ export const useStatusStore = defineStore("savings", {
                 failures: 0,
                 successess: 0,
                 status: "",
-                checked: false,
+                selected: false,
             },
         ],
     }),
@@ -42,23 +42,29 @@ export const useStatusStore = defineStore("savings", {
         addCharacter(character) {
             this.characters.push(character);
         },
-        addCharacterFail(characterKey) {
-            this.characters[characterKey].failures < 3
-                ? this.characters[characterKey].failures++
-                : "";
+        addCharacterFail() {
+            this.characters.forEach((character) => {
+                if (character.selected === true) {
+                    character.failures < 3 ? character.failures++ : "";
+                }
+                character.selected = false;
+            });
         },
-        addCharacterSuccess(characterKey) {
-            this.characters[characterKey].successess < 3
-                ? this.characters[characterKey].successess++
-                : "";
+        addCharacterSuccess() {
+            this.characters.forEach((character) => {
+                if (character.selected === true) {
+                    character.successess < 3 ? character.successess++ : "";
+                }
+                character.selected = false;
+            });
         },
         clearSomeSavings() {
             this.characters.forEach((character) => {
-                if (character.checked === true) {
+                if (character.selected === true) {
                     character.failures = 0;
                     character.successess = 0;
                     character.status = "";
-                    character.checked = false;
+                    character.selected = false;
                 }
             });
         },
@@ -69,16 +75,16 @@ export const useStatusStore = defineStore("savings", {
                 character.status = "";
             });
         },
-        checkboxStatus(characterID) {
+        selectedCharacter(characterID) {
             this.characters.forEach((character) => {
                 if (character.id === characterID) {
-                    character.checked = !character.checked;
+                    character.selected = !character.selected;
                 }
             });
         },
         deleteCharacters() {
             this.characters = this.characters.filter((character) => {
-                return character.checked === false;
+                return character.selected === false;
             });
         },
     },
