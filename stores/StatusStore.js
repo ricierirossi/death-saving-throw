@@ -42,13 +42,14 @@ export const useStatusStore = defineStore("savings", {
         addCharacter(character) {
             this.characters.push(character);
         },
-        addCharacterFail() {
+        addCharacterFailure() {
             this.characters.forEach((character) => {
                 if (character.selected === true) {
                     character.failures < 3 ? character.failures++ : "";
                 }
                 character.selected = false;
             });
+            this.statusChanges();
         },
         addCharacterSuccess() {
             this.characters.forEach((character) => {
@@ -57,6 +58,7 @@ export const useStatusStore = defineStore("savings", {
                 }
                 character.selected = false;
             });
+            this.statusChanges();
         },
         clearSomeSavings() {
             this.characters.forEach((character) => {
@@ -87,10 +89,8 @@ export const useStatusStore = defineStore("savings", {
                 return character.selected === false;
             });
         },
-    },
-    getters: {
-        statusChange: (state) => {
-            state.characters.forEach((character) => {
+        statusChanges() {
+            this.characters.forEach((character) => {
                 if (character.failures === 0 && character.successess === 0) {
                     return (character.status = "");
                 }
@@ -107,4 +107,23 @@ export const useStatusStore = defineStore("savings", {
             });
         },
     },
+    // getters: {
+    //     statusChange: (state) => {
+    //         state.characters.forEach((character) => {
+    //             if (character.failures === 0 && character.successess === 0) {
+    //                 return (character.status = "");
+    //             }
+    //             if (character.failures === 3 && character.successess === 3) {
+    //                 return (character.status = "Schrodinger's cat");
+    //             }
+    //             if (character.failures === 3) {
+    //                 return (character.status = "Dead");
+    //             }
+    //             if (character.successess === 3) {
+    //                 return (character.status = "Alive");
+    //             }
+    //             return (character.status = "Risky");
+    //         });
+    //     },
+    // },
 });
