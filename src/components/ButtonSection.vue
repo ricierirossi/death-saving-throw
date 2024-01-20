@@ -13,6 +13,20 @@
                 {{ diceThrow }}
             </span>
         </div>
+
+        <button
+            class="bg-red-700 hover:bg-red-600 py-2 px-4 rounded-md col-start-1"
+            @click="addFailure"
+        >
+            +1 Failure
+        </button>
+        <button
+            class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded-md col-start-2"
+            @click="addSuccess"
+        >
+            +1 Success
+        </button>
+
         <button
             class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md col-start-1"
             @click="clearSomeSavings"
@@ -54,5 +68,13 @@ const removeCharacters = () => {
 
 const rollDice = () => {
     diceThrow.value = Math.ceil(Math.random() * 20);
+};
+
+const addFailure = () => {
+    statusStore.addCharacterFail();
+};
+
+const addSuccess = () => {
+    statusStore.addCharacterSuccess();
 };
 </script>
