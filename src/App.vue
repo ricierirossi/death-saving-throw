@@ -1,6 +1,5 @@
 <script setup>
 import StatusTable from "./components/StatusTable.vue";
-import StatusTableD from "./components/StatusTableD.vue";
 import ButtonSection from "./components/ButtonSection.vue";
 </script>
 
@@ -13,12 +12,11 @@ import ButtonSection from "./components/ButtonSection.vue";
             <div
                 class="w-full flex flex-col md:flex-row md:justify-center md:gap-10"
             >
-                <!-- <StatusTable /> -->
-                <StatusTableD />
+                <StatusTable />
                 <ButtonSection />
             </div>
         </main>
-        <footer
+        <!-- <footer
             class="absolute bottom-0 left-0 w-screen text-center text-white"
         >
             <a href="https://github.com/ricierirossi" target="_blank"
@@ -31,6 +29,6 @@ import ButtonSection from "./components/ButtonSection.vue";
                 >Background image by gstudioimagen1</a
             >
             on Freepik
-        </footer>
+        </footer> -->
     </div>
 </template>
