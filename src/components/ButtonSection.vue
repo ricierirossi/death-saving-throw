@@ -12,11 +12,14 @@
                 v-model="characterName"
                 @keyup.enter="insertCharacter"
             />
-            <span
-                class="material-symbols-outlined hover:cursor-pointer hover:text-gray-400"
+            <img
+                src="../assets/icons/add.svg"
+                alt="add"
+                width="24"
+                height="24"
+                class="hover:cursor-pointer"
                 @click="insertCharacter"
-                >add_circle</span
-            >
+            />
         </div>
         <div class="flex flex-col col-start-1 col-span-2">
             <button

@@ -28,17 +28,29 @@
                         <div>
                             <div
                                 v-for="failures in character.failures"
-                                class="material-symbols-outlined text-red-800"
+                                class="inline"
                             >
-                                skull
+                                <img
+                                    src="../assets/icons/skull.svg"
+                                    alt="skull"
+                                    width="24"
+                                    height="24"
+                                    class="inline"
+                                />
                             </div>
                         </div>
                         <div>
                             <div
                                 v-for="failures in character.successess"
-                                class="material-symbols-outlined text-green-800"
+                                class="inline"
                             >
-                                health_and_safety
+                                <img
+                                    src="../assets/icons/shield.svg"
+                                    alt="shield"
+                                    width="24"
+                                    height="24"
+                                    class="inline"
+                                />
                             </div>
                         </div>
                     </div>
@@ -46,20 +58,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="flex mt-6 gap-x-3 bg-slate-800 py-2 px-4 rounded-md">
-            <input
-                type="text"
-                placeholder="Insert character name"
-                class="text-zinc-300 bg-transparent border-b-2 flex-grow"
-                v-model="characterName"
-                @keyup.enter="insertCharacter"
-            />
-            <span
-                class="material-symbols-outlined hover:cursor-pointer hover:text-gray-400"
-                @click="insertCharacter"
-                >add_circle</span
-            >
-        </div> -->
     </div>
 </template>
 <script setup>
@@ -67,22 +65,8 @@ import { useStatusStore } from "../../stores/StatusStore";
 import { ref } from "vue";
 
 const statusStore = useStatusStore();
-// const characterName = ref("");
-const selected = ref(false);
 
-// const insertCharacter = () => {
-//     if (characterName.value) {
-//         statusStore.addCharacter({
-//             id: new Date(Date.now()).getTime(),
-//             name: characterName.value,
-//             failures: 0,
-//             successess: 0,
-//             status: "",
-//             selected: false,
-//         });
-//     }
-//     characterName.value = "";
-// };
+const selected = ref(false);
 
 const selectCharacter = (characterID) => {
     selected.value = !selected.value;
