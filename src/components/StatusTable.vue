@@ -1,7 +1,11 @@
 <template>
-    <div class="px-4 py-4 rounded-md bg-transparent-black text-zinc-300">
+    <div
+        class="mx-2 px-4 pb-2 max-h-[344px] overflow-scroll rounded-md bg-transparent-black text-zinc-300"
+    >
         <div>
-            <div class="grid grid-cols-3 items-center text-center">
+            <div
+                class="grid grid-cols-3 items-center text-center sticky top-0 bg-pseudo-transparent-black py-2"
+            >
                 <span>Character</span>
                 <span>
                     <div>Failures & Successes</div>
