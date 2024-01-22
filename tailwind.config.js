@@ -8,6 +8,7 @@ export default {
             },
             colors: {
                 "transparent-black": "rgba(0, 0, 0, 0.6)",
+                "pseudo-transparent-black": "#1E161D",
             },
             gridTemplateColumns: {
                 custom: "1fr 80px 1fr 1fr 1fr",
