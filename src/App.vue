@@ -4,11 +4,11 @@ import ButtonSection from "./components/ButtonSection.vue";
 </script>
 
 <template>
-    <div class="min-h-screen py-5">
+    <div class="min-h-screen bg-background bg-cover bg-bottom text-zinc-300">
         <header>
-            <h1 class="text-4xl text-gray-500">Saving Death Throw</h1>
+            <h1 class="py-2 text-center text-4xl">Saving Death Throw</h1>
         </header>
-        <main class="mt-6">
+        <main class="mt-1">
             <div
                 class="w-full flex flex-col md:flex-row md:justify-center md:gap-10"
             >

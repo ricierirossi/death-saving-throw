@@ -4,11 +4,11 @@ export default {
     theme: {
         extend: {
             backgroundImage: {
-                lava: "url('assets/images/lava.jpg')",
+                background: "url('assets/images/background.jpg')",
             },
             colors: {
-                "transparent-black": "rgba(0, 0, 0, 0.6)",
-                "pseudo-transparent-black": "#1E161D",
+                "transparent-blue": "rgba(7, 2, 35, 0.9)",
+                "strong-blue": "#070127",
             },
             gridTemplateColumns: {
                 custom: "1fr 80px 1fr 1fr 1fr",

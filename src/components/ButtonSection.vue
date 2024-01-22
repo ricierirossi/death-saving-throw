@@ -1,13 +1,13 @@
 <template>
     <div
-        class="absolute bottom-0 w-full grid grid-cols-2 gap-x-2 gap-y-4 mt-4 px-8 py-4 rounded-md bg-transparent-black text-zinc-300 md:mt-0"
+        class="absolute bottom-0 w-full grid grid-cols-2 gap-x-2 gap-y-4 mt-4 px-8 py-4 rounded-md bg-transparent-blue md:mt-0"
     >
         <div
             class="flex gap-x-3 bg-slate-800 py-2 px-4 rounded-md col-start-1 col-span-2"
         >
             <input
                 type="text"
-                placeholder="Insert character name"
+                placeholder="New character name"
                 class="text-zinc-300 bg-transparent border-b-2 flex-grow"
                 v-model="characterName"
                 @keyup.enter="insertCharacter"
@@ -42,13 +42,13 @@
         </div>
 
         <button
-            class="bg-red-700 hover:bg-red-600 py-2 px-4 rounded-md col-start-1"
+            class="bg-red-700 hover:bg-red-600 py-2 px-4 rounded-md col-start-1 text-white"
             @click="addFailure"
         >
             +1 Failure
         </button>
         <button
-            class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded-md col-start-2"
+            class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded-md col-start-2 text-black"
             @click="addSuccess"
         >
             +1 Success
@@ -67,7 +67,7 @@
             Clear all
         </button>
         <button
-            class="bg-red-900 hover:bg-red-800 py-2 px-4 rounded-md col-start-1 col-span-2"
+            class="bg-red-900 hover:bg-red-800 py-2 px-4 rounded-md col-start-1 col-span-2 text-white"
             @click="removeCharacters"
         >
             Remove Character

@@ -1,10 +1,10 @@
 <template>
     <div
-        class="mx-2 px-4 pb-2 max-h-[344px] overflow-scroll rounded-md bg-transparent-black text-zinc-300"
+        class="mx-2 px-4 pb-2 max-h-[344px] overflow-scroll rounded-md bg-transparent-blue"
     >
         <div>
             <div
-                class="grid grid-cols-3 items-center text-center sticky top-0 bg-pseudo-transparent-black py-2"
+                class="grid grid-cols-3 items-center text-center sticky top-0 bg-strong-blue py-2 w-full"
             >
                 <span>Character</span>
                 <span>
