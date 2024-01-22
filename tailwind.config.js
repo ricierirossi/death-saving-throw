@@ -5,6 +5,7 @@ export default {
         extend: {
             backgroundImage: {
                 background: "url('assets/images/background.jpg')",
+                background2: "url('assets/images/background2.webp')",
             },
             colors: {
                 "transparent-blue": "rgba(7, 2, 35, 0.9)",

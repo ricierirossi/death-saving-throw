@@ -4,9 +4,9 @@ import ButtonSection from "./components/ButtonSection.vue";
 </script>
 
 <template>
-    <div class="min-h-screen bg-background bg-cover bg-bottom text-zinc-300">
+    <div class="min-h-screen bg-background2 bg-cover bg-bottom text-zinc-300">
         <header>
-            <h1 class="py-2 text-center text-4xl">Saving Death Throw</h1>
+            <h1 class="py-2 text-center text-4xl">Death Saving Throw</h1>
         </header>
         <main class="mt-1">
             <div
