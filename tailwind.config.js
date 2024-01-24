@@ -4,12 +4,11 @@ export default {
     theme: {
         extend: {
             backgroundImage: {
-                background: "url('assets/images/background.jpg')",
-                background2: "url('assets/images/background2.webp')",
+                background: "url('assets/images/background.webp')",
             },
             colors: {
                 "transparent-blue": "rgba(7, 2, 35, 0.9)",
-                "strong-blue": "#070127",
+                "strong-blue": "rgb(7, 1, 39)",
             },
             gridTemplateColumns: {
                 custom: "1fr 80px 1fr 1fr 1fr",

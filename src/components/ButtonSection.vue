@@ -1,14 +1,14 @@
 <template>
     <div
-        class="absolute bottom-0 w-full grid grid-cols-2 gap-x-2 gap-y-4 mt-4 px-8 py-4 rounded-md bg-transparent-blue md:mt-0"
+        class="absolute md:static bottom-0 w-full max-h-[312px] md:max-w-96 grid grid-cols-2 gap-3 p-2 md:rounded-md bg-transparent-blue"
     >
         <div
-            class="flex gap-x-3 bg-slate-800 py-2 px-4 rounded-md col-start-1 col-span-2"
+            class="col-start-1 col-span-2 flex gap-3 p-2 rounded-md bg-slate-800 max-w-96 justify-self-center w-full"
         >
             <input
                 type="text"
                 placeholder="New character name"
-                class="text-zinc-300 bg-transparent border-b-2 flex-grow"
+                class="bg-transparent border-b-2 flex-grow"
                 v-model="characterName"
                 @keyup.enter="insertCharacter"
             />
@@ -21,16 +21,18 @@
                 @click="insertCharacter"
             />
         </div>
-        <div class="flex flex-col col-start-1 col-span-2">
+        <div
+            class="col-start-1 col-span-2 flex flex-col max-w-96 justify-self-center w-full"
+        >
             <button
-                class="bg-blue-900 hover:bg-blue-800 py-2 px-4 rounded-md"
+                class="col-start-1 col-span-2 bg-blue-900 hover:bg-blue-800 py-2 px-4 rounded-md"
                 @click="rollDice"
             >
                 Saving Throw
             </button>
-            <div class="flex justify-center min-h-7">
+            <div class="flex justify-center">
                 <span
-                    class="text-center text-lg font-bold bg-blue-950 rounded-b-md min-w-64"
+                    class="flex justify-center items-center w-80 h-10 text-lg font-bold bg-blue-950 rounded-b-md"
                     :class="{
                         'text-red-600': diceThrow === 1,
                         'text-green-600': diceThrow === 20,
@@ -42,32 +44,32 @@
         </div>
 
         <button
-            class="bg-red-700 hover:bg-red-600 py-2 px-4 rounded-md col-start-1 text-white"
+            class="bg-red-700 hover:bg-red-600 py-2 px-4 rounded-md text-white max-w-48 justify-self-end w-full"
             @click="addFailure"
         >
             +1 Failure
         </button>
         <button
-            class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded-md col-start-2 text-black"
+            class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded-md text-white max-w-48"
             @click="addSuccess"
         >
             +1 Success
         </button>
 
         <button
-            class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md col-start-1"
+            class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md max-w-48 justify-self-end w-full"
             @click="clearSomeSavings"
         >
             Clear
         </button>
         <button
-            class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md col-start-2"
+            class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md max-w-48"
             @click="clearAll"
         >
             Clear all
         </button>
         <button
-            class="bg-red-900 hover:bg-red-800 py-2 px-4 rounded-md col-start-1 col-span-2 text-white"
+            class="col-start-1 col-span-2 bg-red-900 hover:bg-red-800 py-2 px-4 rounded-md text-white max-w-96 justify-self-center w-full"
             @click="removeCharacters"
         >
             Remove Character

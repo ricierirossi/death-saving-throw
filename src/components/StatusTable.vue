@@ -1,10 +1,14 @@
 <template>
     <div
-        class="mx-2 px-4 pb-2 max-h-[344px] overflow-scroll rounded-md bg-transparent-blue"
+        class="mx-1 md:mx-0 rounded-md max-h-[360px] md:max-h-screen overflow-scroll"
+        :class="
+            ({ 'bg-transparent': statusStore.characters.length < 1 },
+            { 'bg-transparent-blue': statusStore.characters.length > 0 })
+        "
     >
         <div>
             <div
-                class="grid grid-cols-3 items-center text-center sticky top-0 bg-strong-blue py-2 w-full"
+                class="sticky top-0 grid grid-cols-3 items-center text-center min-h-12 rounded-md bg-strong-blue"
             >
                 <span>Character</span>
                 <span>
@@ -20,14 +24,14 @@
                 @click="selectCharacter(character.id)"
             >
                 <div
-                    class="grid grid-cols-3 items-center text-center min-h-16"
+                    class="grid grid-cols-3 min-h-16 items-center text-center px-4"
                     :class="{
                         'border-solid border-2 border-blue-900 rounded-md':
                             character.selected,
                         'border-2 border-transparent': !character.selected,
                     }"
                 >
-                    <span>{{ character.name }} </span>
+                    <span class="overflow-x-hidden">{{ character.name }} </span>
                     <div>
                         <div>
                             <div
