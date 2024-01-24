@@ -1,6 +1,6 @@
 <template>
     <div
-        class="mx-1 md:mx-0 rounded-md max-h-[360px] md:max-h-screen overflow-scroll"
+        class="mx-1 md:mx-0 rounded-md max-h-[360px] md:max-h-screen overflow-x-hidden overflow-y-auto"
         :class="
             ({ 'bg-transparent': statusStore.characters.length < 1 },
             { 'bg-transparent-blue': statusStore.characters.length > 0 })
