@@ -1,6 +1,6 @@
 <template>
     <div
-        class="absolute md:static bottom-0 w-full max-h-[312px] md:max-w-96 grid grid-cols-2 gap-3 p-2 md:rounded-md bg-transparent-blue"
+        class="absolute md:static bottom-0 w-full md:max-w-96 grid grid-cols-2 gap-3 p-2 md:rounded-md bg-transparent-blue"
     >
         <div
             class="col-start-1 col-span-2 flex gap-3 p-2 rounded-md bg-slate-800 max-w-96 justify-self-center w-full"
@@ -74,6 +74,10 @@
         >
             Remove Character
         </button>
+        <div class="flex gap-x-4 col-start-1 col-span-2 justify-self-end">
+            <buttons class="hover:cursor-pointer">About</buttons>
+            <buttons class="hover:cursor-pointer">Help</buttons>
+        </div>
     </div>
 </template>
 <script setup>
