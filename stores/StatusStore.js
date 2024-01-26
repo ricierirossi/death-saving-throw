@@ -2,11 +2,15 @@ import { defineStore } from "pinia";
 
 export const useStatusStore = defineStore("savings", {
     state: () => ({
-        characters: [],
+        characters: JSON.parse(localStorage.getItem("characters")) || [],
     }),
     actions: {
+        persistToLocalStorage() {
+            localStorage.setItem("characters", JSON.stringify(this.characters));
+        },
         addCharacter(character) {
             this.characters.push(character);
+            this.persistToLocalStorage();
         },
         addCharacterFailure() {
             this.characters.forEach((character) => {
@@ -16,6 +20,7 @@ export const useStatusStore = defineStore("savings", {
                 character.selected = false;
             });
             this.statusChanges();
+            this.persistToLocalStorage();
         },
         addCharacterSuccess() {
             this.characters.forEach((character) => {
@@ -25,6 +30,7 @@ export const useStatusStore = defineStore("savings", {
                 character.selected = false;
             });
             this.statusChanges();
+            this.persistToLocalStorage();
         },
         clearSomeSavings() {
             this.characters.forEach((character) => {
@@ -35,6 +41,7 @@ export const useStatusStore = defineStore("savings", {
                     character.selected = false;
                 }
             });
+            this.persistToLocalStorage();
         },
         clearAllSavings() {
             this.characters.forEach((character) => {
@@ -42,6 +49,7 @@ export const useStatusStore = defineStore("savings", {
                 character.successess = 0;
                 character.status = "";
             });
+            this.persistToLocalStorage();
         },
         selectedCharacter(characterID) {
             this.characters.forEach((character) => {
@@ -54,6 +62,7 @@ export const useStatusStore = defineStore("savings", {
             this.characters = this.characters.filter((character) => {
                 return character.selected === false;
             });
+            this.persistToLocalStorage();
         },
         statusChanges() {
             this.characters.forEach((character) => {

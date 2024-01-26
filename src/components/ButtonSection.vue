@@ -28,7 +28,7 @@
                 class="col-start-1 col-span-2 bg-blue-900 hover:bg-blue-800 py-2 px-4 rounded-md"
                 @click="rollDice"
             >
-                Saving Throw
+                Roll d20
             </button>
             <div class="flex justify-center">
                 <span
