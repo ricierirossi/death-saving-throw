@@ -74,10 +74,6 @@
         >
             Remove Character
         </button>
-        <div class="flex gap-x-4 col-start-1 col-span-2 justify-self-end">
-            <buttons class="hover:cursor-pointer">About</buttons>
-            <buttons class="hover:cursor-pointer">Help</buttons>
-        </div>
     </div>
 </template>
 <script setup>
