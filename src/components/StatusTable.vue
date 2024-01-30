@@ -7,16 +7,16 @@
         "
     >
         <div>
-            <div
-                class="sticky top-0 grid grid-cols-3 items-center text-center min-h-12 rounded-md bg-strong-blue"
+            <!-- <div
+                class="sticky top-0 grid grid-cols-4 items-center text-center min-h-12 rounded-md bg-strong-blue"
             >
-                <span>Character</span>
                 <span>
-                    <div>Failures & Successes</div>
-                    <div></div>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </span>
-                <span>Status</span>
-            </div>
+            </div> -->
             <div
                 v-for="(character, key) in statusStore.characters"
                 :key="character.id"
@@ -24,20 +24,45 @@
                 @click="selectCharacter(character.id)"
             >
                 <div
-                    class="grid grid-cols-3 min-h-16 items-center text-center px-4"
+                    class="grid grid-cols-4 min-h-16 items-center text-center"
                     :class="{
                         'border-solid border-2 border-blue-900 rounded-md':
                             character.selected,
                         'border-2 border-transparent': !character.selected,
                     }"
                 >
-                    <span class="overflow-x-hidden">{{ character.name }} </span>
-                    <div>
-                        <div>
-                            <div
-                                v-for="failures in character.failures"
-                                class="inline"
-                            >
+                    <div
+                        id="buttons-left"
+                        class="flex flex-col col-start-1 gap-y-2"
+                    >
+                        <button
+                            class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center"
+                        >
+                            <img
+                                src="../assets/icons/arrow.svg"
+                                alt="arrow"
+                                width="24"
+                                height="24"
+                            />
+                        </button>
+                        <button
+                            class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center"
+                        >
+                            <img
+                                src="../assets/icons/arrow.svg"
+                                alt="arrow"
+                                width="24"
+                                height="24"
+                                class="rotate-180"
+                            />
+                        </button>
+                    </div>
+                    <div class="col-start-2 col-span-2 grid grid-rows-2">
+                        <span class="overflow-x-hidden text-left"
+                            >{{ character.name }}
+                        </span>
+                        <div class="flex justify-around">
+                            <div v-for="failures in character.failures">
                                 <img
                                     src="../assets/icons/skull.svg"
                                     alt="skull"
@@ -46,12 +71,7 @@
                                     class="inline"
                                 />
                             </div>
-                        </div>
-                        <div>
-                            <div
-                                v-for="failures in character.successess"
-                                class="inline"
-                            >
+                            <div v-for="failures in character.successess">
                                 <img
                                     src="../assets/icons/shield.svg"
                                     alt="shield"
@@ -62,7 +82,33 @@
                             </div>
                         </div>
                     </div>
-                    <span>{{ character.status }}</span>
+
+                    <div
+                        id="buttons-right"
+                        class="flex flex-col col-start-4 gap-y-2"
+                    >
+                        <button
+                            class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center"
+                        >
+                            <img
+                                src="../assets/icons/arrow.svg"
+                                alt="arrow"
+                                width="24"
+                                height="24"
+                            />
+                        </button>
+                        <button
+                            class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center"
+                        >
+                            <img
+                                src="../assets/icons/arrow.svg"
+                                alt="arrow"
+                                width="24"
+                                height="24"
+                                class="rotate-180"
+                            />
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
