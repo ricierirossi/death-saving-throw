@@ -12,44 +12,36 @@ export const useStatusStore = defineStore("savings", {
             this.characters.push(character);
             this.persistToLocalStorage();
         },
-        addCharacterFailure() {
+        addCharacterFailure(selectedID) {
             this.characters.forEach((character) => {
-                if (character.selected === true) {
+                if (character.id === selectedID) {
                     character.failures < 3 ? character.failures++ : "";
                 }
-                character.selected = false;
             });
-            this.statusChanges();
             this.persistToLocalStorage();
         },
-        removeCharacterFailure() {
+        removeCharacterFailure(selectedID) {
             this.characters.forEach((character) => {
-                if (character.selected === true) {
+                if (character.id === selectedID) {
                     character.failures > 0 ? character.failures-- : "";
                 }
-                character.selected = false;
             });
-            this.statusChanges();
             this.persistToLocalStorage();
         },
-        addCharacterSuccess() {
+        addCharacterSuccess(selectedID) {
             this.characters.forEach((character) => {
-                if (character.selected === true) {
+                if (character.id === selectedID) {
                     character.successess < 3 ? character.successess++ : "";
                 }
-                character.selected = false;
             });
-            this.statusChanges();
             this.persistToLocalStorage();
         },
-        removeCharacterSuccess() {
+        removeCharacterSuccess(selectedID) {
             this.characters.forEach((character) => {
-                if (character.selected === true) {
+                if (character.id === selectedID) {
                     character.successess > 0 ? character.successess-- : "";
                 }
-                character.selected = false;
             });
-            this.statusChanges();
             this.persistToLocalStorage();
         },
         clearSomeSavings() {
@@ -57,8 +49,6 @@ export const useStatusStore = defineStore("savings", {
                 if (character.selected === true) {
                     character.failures = 0;
                     character.successess = 0;
-                    character.status = "";
-                    character.selected = false;
                 }
             });
             this.persistToLocalStorage();
@@ -67,7 +57,6 @@ export const useStatusStore = defineStore("savings", {
             this.characters.forEach((character) => {
                 character.failures = 0;
                 character.successess = 0;
-                character.status = "";
             });
             this.persistToLocalStorage();
         },
