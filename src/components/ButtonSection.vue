@@ -44,19 +44,6 @@
         </div>
 
         <button
-            class="bg-red-700 hover:bg-red-600 py-2 px-4 rounded-md text-white max-w-48 justify-self-end w-full"
-            @click="addFailure"
-        >
-            +1 Failure
-        </button>
-        <button
-            class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded-md text-white max-w-48"
-            @click="addSuccess"
-        >
-            +1 Success
-        </button>
-
-        <button
             class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md max-w-48 justify-self-end w-full"
             @click="clearSomeSavings"
         >
@@ -76,6 +63,7 @@
         </button>
     </div>
 </template>
+
 <script setup>
 import { useStatusStore } from "../../stores/StatusStore";
 import { ref } from "vue";
@@ -91,7 +79,6 @@ const insertCharacter = () => {
             name: characterName.value,
             failures: 0,
             successess: 0,
-            status: "",
             selected: false,
         });
     }
@@ -113,13 +100,5 @@ const removeCharacters = () => {
 
 const rollDice = () => {
     diceThrow.value = Math.ceil(Math.random() * 20);
-};
-
-const addFailure = () => {
-    statusStore.addCharacterFailure();
-};
-
-const addSuccess = () => {
-    statusStore.addCharacterSuccess();
 };
 </script>

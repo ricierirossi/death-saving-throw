@@ -8,14 +8,11 @@
     >
         <div>
             <div
-                class="sticky top-0 grid grid-cols-3 items-center text-center min-h-12 rounded-md bg-strong-blue"
+                class="sticky top-0 grid grid-cols-4 items-center text-center min-h-12 rounded-md bg-strong-blue"
             >
-                <span>Character</span>
-                <span>
-                    <div>Failures & Successes</div>
-                    <div></div>
-                </span>
-                <span>Status</span>
+                <span class="col-start-1 col-end-2">Failures</span>
+                <span class="col-start-2 col-end-4">Character</span>
+                <span class="col-start-4 col-end-5">Successes</span>
             </div>
             <div
                 v-for="(character, key) in statusStore.characters"
@@ -24,50 +21,97 @@
                 @click="selectCharacter(character.id)"
             >
                 <div
-                    class="grid grid-cols-3 min-h-16 items-center text-center px-4"
+                    class="grid grid-cols-4 min-h-16 items-center text-center"
                     :class="{
                         'border-solid border-2 border-blue-900 rounded-md':
                             character.selected,
                         'border-2 border-transparent': !character.selected,
                     }"
                 >
-                    <span class="overflow-x-hidden">{{ character.name }} </span>
-                    <div>
-                        <div>
-                            <div
-                                v-for="failures in character.failures"
-                                class="inline"
-                            >
+                    <div id="buttons-left" class="flex flex-col gap-y-2">
+                        <button
+                            class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
+                            @click="addFailure"
+                        >
+                            <img
+                                src="../assets/icons/arrow.svg"
+                                alt="arrow"
+                                width="24"
+                                height="24"
+                            />
+                        </button>
+                        <button
+                            class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
+                            @click="removeFailure"
+                        >
+                            <img
+                                src="../assets/icons/arrow.svg"
+                                alt="arrow"
+                                width="24"
+                                height="24"
+                                class="rotate-180"
+                            />
+                        </button>
+                    </div>
+                    <div
+                        class="col-start-2 col-span-2 grid grid-rows-2 gap-y-2"
+                    >
+                        <span
+                            class="overflow-x-hidden text-center text-lg font-semibold"
+                            >{{ character.name }}
+                        </span>
+                        <div class="grid grid-cols-2">
+                            <div class="flex justify-center">
                                 <img
+                                    v-for="failures in character.failures"
                                     src="../assets/icons/skull.svg"
                                     alt="skull"
                                     width="24"
                                     height="24"
-                                    class="inline"
                                 />
                             </div>
-                        </div>
-                        <div>
-                            <div
-                                v-for="failures in character.successess"
-                                class="inline"
-                            >
+                            <div class="flex justify-center">
                                 <img
+                                    v-for="failures in character.successess"
                                     src="../assets/icons/shield.svg"
                                     alt="shield"
                                     width="24"
                                     height="24"
-                                    class="inline"
                                 />
                             </div>
                         </div>
                     </div>
-                    <span>{{ character.status }}</span>
+                    <div id="buttons-right" class="flex flex-col gap-y-2">
+                        <button
+                            class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
+                            @click="addSuccess"
+                        >
+                            <img
+                                src="../assets/icons/arrow.svg"
+                                alt="arrow"
+                                width="24"
+                                height="24"
+                            />
+                        </button>
+                        <button
+                            class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
+                            @click="removeSuccess"
+                        >
+                            <img
+                                src="../assets/icons/arrow.svg"
+                                alt="arrow"
+                                width="24"
+                                height="24"
+                                class="rotate-180"
+                            />
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
 <script setup>
 import { useStatusStore } from "../../stores/StatusStore";
 import { ref } from "vue";
@@ -79,5 +123,21 @@ const selected = ref(false);
 const selectCharacter = (characterID) => {
     selected.value = !selected.value;
     statusStore.selectedCharacter(characterID);
+};
+
+const addFailure = () => {
+    statusStore.addCharacterFailure();
+};
+
+const removeFailure = () => {
+    statusStore.removeCharacterFailure();
+};
+
+const addSuccess = () => {
+    statusStore.addCharacterSuccess();
+};
+
+const removeSuccess = () => {
+    statusStore.removeCharacterSuccess();
 };
 </script>

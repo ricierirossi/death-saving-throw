@@ -22,10 +22,30 @@ export const useStatusStore = defineStore("savings", {
             this.statusChanges();
             this.persistToLocalStorage();
         },
+        removeCharacterFailure() {
+            this.characters.forEach((character) => {
+                if (character.selected === true) {
+                    character.failures > 0 ? character.failures-- : "";
+                }
+                character.selected = false;
+            });
+            this.statusChanges();
+            this.persistToLocalStorage();
+        },
         addCharacterSuccess() {
             this.characters.forEach((character) => {
                 if (character.selected === true) {
                     character.successess < 3 ? character.successess++ : "";
+                }
+                character.selected = false;
+            });
+            this.statusChanges();
+            this.persistToLocalStorage();
+        },
+        removeCharacterSuccess() {
+            this.characters.forEach((character) => {
+                if (character.selected === true) {
+                    character.successess > 0 ? character.successess-- : "";
                 }
                 character.selected = false;
             });
@@ -63,23 +83,6 @@ export const useStatusStore = defineStore("savings", {
                 return character.selected === false;
             });
             this.persistToLocalStorage();
-        },
-        statusChanges() {
-            this.characters.forEach((character) => {
-                if (character.failures === 0 && character.successess === 0) {
-                    return (character.status = "");
-                }
-                if (character.failures === 3 && character.successess === 3) {
-                    return (character.status = "Schrodinger's cat");
-                }
-                if (character.failures === 3) {
-                    return (character.status = "Dead");
-                }
-                if (character.successess === 3) {
-                    return (character.status = "Alive");
-                }
-                return (character.status = "Risky");
-            });
         },
     },
 });
