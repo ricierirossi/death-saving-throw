@@ -31,10 +31,7 @@
                         'border-2 border-transparent': !character.selected,
                     }"
                 >
-                    <div
-                        id="buttons-left"
-                        class="flex flex-col col-start-1 gap-y-2"
-                    >
+                    <div id="buttons-left" class="flex flex-col gap-y-2">
                         <button
                             class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center"
                         >
@@ -58,35 +55,31 @@
                         </button>
                     </div>
                     <div class="col-start-2 col-span-2 grid grid-rows-2">
-                        <span class="overflow-x-hidden text-left"
+                        <span class="overflow-x-hidden text-center"
                             >{{ character.name }}
                         </span>
-                        <div class="flex justify-around">
-                            <div v-for="failures in character.failures">
+                        <div class="grid grid-cols-2">
+                            <div class="flex justify-center">
                                 <img
+                                    v-for="failures in character.failures"
                                     src="../assets/icons/skull.svg"
                                     alt="skull"
                                     width="24"
                                     height="24"
-                                    class="inline"
                                 />
                             </div>
-                            <div v-for="failures in character.successess">
+                            <div class="flex justify-center">
                                 <img
+                                    v-for="failures in character.successess"
                                     src="../assets/icons/shield.svg"
                                     alt="shield"
                                     width="24"
                                     height="24"
-                                    class="inline"
                                 />
                             </div>
                         </div>
                     </div>
-
-                    <div
-                        id="buttons-right"
-                        class="flex flex-col col-start-4 gap-y-2"
-                    >
+                    <div id="buttons-right" class="flex flex-col gap-y-2">
                         <button
                             class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center"
                         >
