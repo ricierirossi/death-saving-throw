@@ -18,20 +18,12 @@
                 v-for="(character, key) in statusStore.characters"
                 :key="character.id"
                 class="border-dotted border-t-2 border-slate-700 hover:cursor-pointer"
-                @click="selectCharacter(character.id)"
             >
-                <div
-                    class="grid grid-cols-4 min-h-16 items-center text-center"
-                    :class="{
-                        'border-solid border-2 border-blue-900 rounded-md':
-                            character.selected,
-                        'border-2 border-transparent': !character.selected,
-                    }"
-                >
+                <div class="grid grid-cols-4 min-h-16 items-center text-center">
                     <div id="buttons-left" class="flex flex-col gap-y-2">
                         <button
                             class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
-                            @click="addFailure"
+                            @click="addFailure((selected = character.id))"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
@@ -42,7 +34,7 @@
                         </button>
                         <button
                             class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
-                            @click="removeFailure"
+                            @click="removeFailure((selected = character.id))"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
@@ -84,7 +76,7 @@
                     <div id="buttons-right" class="flex flex-col gap-y-2">
                         <button
                             class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
-                            @click="addSuccess"
+                            @click="addSuccess((selected = character.id))"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
@@ -95,7 +87,7 @@
                         </button>
                         <button
                             class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
-                            @click="removeSuccess"
+                            @click="removeSuccess((selected = character.id))"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
@@ -118,26 +110,28 @@ import { ref } from "vue";
 
 const statusStore = useStatusStore();
 
-const selected = ref(false);
+const selected = ref("");
 
-const selectCharacter = (characterID) => {
-    selected.value = !selected.value;
-    statusStore.selectedCharacter(characterID);
+// const selected = ref(false);
+
+// const selectCharacter = (characterID) => {
+//     selected.value = !selected.value;
+//     statusStore.selectedCharacter(characterID);
+// };
+
+const addFailure = (selected) => {
+    statusStore.addCharacterFailure(selected);
 };
 
-const addFailure = () => {
-    statusStore.addCharacterFailure();
+const removeFailure = (selected) => {
+    statusStore.removeCharacterFailure(selected);
 };
 
-const removeFailure = () => {
-    statusStore.removeCharacterFailure();
+const addSuccess = (selected) => {
+    statusStore.addCharacterSuccess(selected);
 };
 
-const addSuccess = () => {
-    statusStore.addCharacterSuccess();
-};
-
-const removeSuccess = () => {
-    statusStore.removeCharacterSuccess();
+const removeSuccess = (selected) => {
+    statusStore.removeCharacterSuccess(selected);
 };
 </script>
