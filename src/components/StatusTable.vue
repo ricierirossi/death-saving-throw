@@ -7,16 +7,13 @@
         "
     >
         <div>
-            <!-- <div
+            <div
                 class="sticky top-0 grid grid-cols-4 items-center text-center min-h-12 rounded-md bg-strong-blue"
             >
-                <span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-            </div> -->
+                <span class="col-start-1 col-end-2">Failures</span>
+                <span class="col-start-2 col-end-4">Character</span>
+                <span class="col-start-4 col-end-5">Successes</span>
+            </div>
             <div
                 v-for="(character, key) in statusStore.characters"
                 :key="character.id"
@@ -34,6 +31,7 @@
                     <div id="buttons-left" class="flex flex-col gap-y-2">
                         <button
                             class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
+                            @click="addFailure"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
@@ -44,6 +42,7 @@
                         </button>
                         <button
                             class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
+                            @click="removeFailure"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
@@ -85,6 +84,7 @@
                     <div id="buttons-right" class="flex flex-col gap-y-2">
                         <button
                             class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
+                            @click="addSuccess"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
@@ -95,6 +95,7 @@
                         </button>
                         <button
                             class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
+                            @click="removeSuccess"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
@@ -110,6 +111,7 @@
         </div>
     </div>
 </template>
+
 <script setup>
 import { useStatusStore } from "../../stores/StatusStore";
 import { ref } from "vue";
@@ -121,5 +123,21 @@ const selected = ref(false);
 const selectCharacter = (characterID) => {
     selected.value = !selected.value;
     statusStore.selectedCharacter(characterID);
+};
+
+const addFailure = () => {
+    statusStore.addCharacterFailure();
+};
+
+const removeFailure = () => {
+    statusStore.removeCharacterFailure();
+};
+
+const addSuccess = () => {
+    statusStore.addCharacterSuccess();
+};
+
+const removeSuccess = () => {
+    statusStore.removeCharacterSuccess();
 };
 </script>
