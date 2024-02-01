@@ -33,7 +33,7 @@
                 >
                     <div id="buttons-left" class="flex flex-col gap-y-2">
                         <button
-                            class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center"
+                            class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
@@ -43,7 +43,7 @@
                             />
                         </button>
                         <button
-                            class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center"
+                            class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
@@ -54,8 +54,11 @@
                             />
                         </button>
                     </div>
-                    <div class="col-start-2 col-span-2 grid grid-rows-2">
-                        <span class="overflow-x-hidden text-center"
+                    <div
+                        class="col-start-2 col-span-2 grid grid-rows-2 gap-y-2"
+                    >
+                        <span
+                            class="overflow-x-hidden text-center text-lg font-semibold"
                             >{{ character.name }}
                         </span>
                         <div class="grid grid-cols-2">
@@ -81,7 +84,7 @@
                     </div>
                     <div id="buttons-right" class="flex flex-col gap-y-2">
                         <button
-                            class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center"
+                            class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
@@ -91,7 +94,7 @@
                             />
                         </button>
                         <button
-                            class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center"
+                            class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
