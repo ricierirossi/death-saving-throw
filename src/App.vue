@@ -4,7 +4,7 @@ import ButtonSection from "./components/ButtonSection.vue";
 </script>
 
 <template>
-    <div class="min-h-screen bg-background bg-cover bg-bottom text-zinc-300">
+    <div class="min-h-screen gradient bg-cover bg-bottom text-zinc-300">
         <header>
             <h1 class="py-2 md:pt-8 text-center text-4xl">
                 Death Saving Throw
@@ -18,3 +18,9 @@ import ButtonSection from "./components/ButtonSection.vue";
         </main>
     </div>
 </template>
+
+<style>
+.gradient {
+    background-image: linear-gradient(to bottom, #434343 0%, black 100%);
+}
+</style>
