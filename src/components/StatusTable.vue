@@ -21,18 +21,13 @@
             >
                 <div
                     class="grid grid-cols-4 min-h-16 items-center text-center"
-                    @pointerdown="openContextMenu()"
+                    @pointerdown="onHolding(), (isHolding = true)"
+                    @pointerup="isHolding = false"
                 >
                     <div
                         id="buttons-left"
                         class="flex flex-col gap-y-2 ml-1 my-1"
                     >
-                        <button
-                            @pointerdown="isHolding = !isHolding"
-                            @pointerup="isHolding = !isHolding"
-                        >
-                            {{ isHolding }}
-                        </button>
                         <button
                             class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
                             @click="addFailure((selected = character.id))"
@@ -124,13 +119,19 @@ import { useStatusStore } from "../../stores/StatusStore";
 import { ref } from "vue";
 
 const statusStore = useStatusStore();
-
 const selected = ref("");
+const isHolding = ref(false);
+
+const onHolding = () => {
+    setTimeout(openContextMenu, 1200);
+};
 
 const openContextMenu = () => {
-    console.log("oq ta contecendu?");
+    if (isHolding.value) {
+        // Show context menu
+    }
+    return;
 };
-const isHolding = ref(false);
 
 const addFailure = (selected) => {
     statusStore.addCharacterFailure(selected);
