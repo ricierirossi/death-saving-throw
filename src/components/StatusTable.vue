@@ -20,10 +20,11 @@
                 class="border-dotted border-t-2 border-slate-700 hover:cursor-pointer"
             >
                 <div
-                    class="grid grid-cols-4 min-h-16 items-center text-center"
+                    class="grid grid-cols-4 min-h-16 items-center text-center relative"
                     @pointerdown="onHolding(), (isHolding = true)"
                     @pointerup="isHolding = false"
                 >
+                    <ContextMenu v-if="showContextMenu" />
                     <div
                         id="buttons-left"
                         class="flex flex-col gap-y-2 ml-1 my-1"
@@ -34,7 +35,7 @@
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
-                                alt="arrow"
+                                alt="arrow up"
                                 width="24"
                                 height="24"
                             />
@@ -45,10 +46,10 @@
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
-                                alt="arrow"
+                                alt="arrow down"
                                 width="24"
                                 height="24"
-                                class="rotate-180"
+                                class="rotate-180 z-0"
                             />
                         </button>
                     </div>
@@ -90,7 +91,7 @@
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
-                                alt="arrow"
+                                alt="arrow up"
                                 width="24"
                                 height="24"
                             />
@@ -101,7 +102,7 @@
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
-                                alt="arrow"
+                                alt="arrow down"
                                 width="24"
                                 height="24"
                                 class="rotate-180"
@@ -115,12 +116,14 @@
 </template>
 
 <script setup>
+import ContextMenu from "./ContextMenu.vue";
 import { useStatusStore } from "../../stores/StatusStore";
 import { ref } from "vue";
 
 const statusStore = useStatusStore();
 const selected = ref("");
 const isHolding = ref(false);
+const showContextMenu = ref(false);
 
 const onHolding = () => {
     setTimeout(openContextMenu, 1200);
@@ -128,7 +131,7 @@ const onHolding = () => {
 
 const openContextMenu = () => {
     if (isHolding.value) {
-        // Show context menu
+        showContextMenu.value = true;
     }
     return;
 };
