@@ -19,15 +19,23 @@
                 :key="character.id"
                 class="border-dotted border-t-2 border-slate-700 hover:cursor-pointer"
             >
-                <div class="grid grid-cols-4 min-h-16 items-center text-center">
-                    <div id="buttons-left" class="flex flex-col gap-y-2">
+                <div
+                    class="grid grid-cols-4 min-h-16 items-center text-center relative"
+                    @pointerdown="onHolding(), (isHolding = true)"
+                    @pointerup="isHolding = false"
+                >
+                    <ContextMenu v-if="showContextMenu" />
+                    <div
+                        id="buttons-left"
+                        class="flex flex-col gap-y-2 ml-1 my-1"
+                    >
                         <button
                             class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
                             @click="addFailure((selected = character.id))"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
-                                alt="arrow"
+                                alt="arrow up"
                                 width="24"
                                 height="24"
                             />
@@ -38,10 +46,10 @@
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
-                                alt="arrow"
+                                alt="arrow down"
                                 width="24"
                                 height="24"
-                                class="rotate-180"
+                                class="rotate-180 z-0"
                             />
                         </button>
                     </div>
@@ -73,14 +81,17 @@
                             </div>
                         </div>
                     </div>
-                    <div id="buttons-right" class="flex flex-col gap-y-2">
+                    <div
+                        id="buttons-right"
+                        class="flex flex-col gap-y-2 mr-1 my-1"
+                    >
                         <button
                             class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
                             @click="addSuccess((selected = character.id))"
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
-                                alt="arrow"
+                                alt="arrow up"
                                 width="24"
                                 height="24"
                             />
@@ -91,7 +102,7 @@
                         >
                             <img
                                 src="../assets/icons/arrow.svg"
-                                alt="arrow"
+                                alt="arrow down"
                                 width="24"
                                 height="24"
                                 class="rotate-180"
@@ -105,19 +116,25 @@
 </template>
 
 <script setup>
+import ContextMenu from "./ContextMenu.vue";
 import { useStatusStore } from "../../stores/StatusStore";
 import { ref } from "vue";
 
 const statusStore = useStatusStore();
-
 const selected = ref("");
+const isHolding = ref(false);
+const showContextMenu = ref(false);
 
-// const selected = ref(false);
+const onHolding = () => {
+    setTimeout(openContextMenu, 1200);
+};
 
-// const selectCharacter = (characterID) => {
-//     selected.value = !selected.value;
-//     statusStore.selectedCharacter(characterID);
-// };
+const openContextMenu = () => {
+    if (isHolding.value) {
+        showContextMenu.value = true;
+    }
+    return;
+};
 
 const addFailure = (selected) => {
     statusStore.addCharacterFailure(selected);

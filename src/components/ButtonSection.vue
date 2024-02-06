@@ -42,25 +42,12 @@
                 </span>
             </div>
         </div>
-
-        <!-- <button
-            class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md max-w-48 justify-self-end w-full"
-            @click="clearSomeSavings"
-        >
-            Clear
-        </button> -->
         <button
             class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md max-w-48"
             @click="clearAll"
         >
             Clear all
         </button>
-        <!-- <button
-            class="col-start-1 col-span-2 bg-red-900 hover:bg-red-800 py-2 px-4 rounded-md text-white max-w-96 justify-self-center w-full"
-            @click="removeCharacters"
-        >
-            Remove Character
-        </button> -->
     </div>
 </template>
 
@@ -84,18 +71,10 @@ const insertCharacter = () => {
     characterName.value = "";
 };
 
-// const clearSomeSavings = () => {
-//     statusStore.clearSomeSavings();
-// };
-
 const clearAll = () => {
     statusStore.clearAllSavings();
     diceThrow.value = "";
 };
-
-// const removeCharacters = () => {
-//     statusStore.deleteCharacters();
-// };
 
 const rollDice = () => {
     diceThrow.value = Math.ceil(Math.random() * 20);
