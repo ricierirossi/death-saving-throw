@@ -19,8 +19,20 @@
                 :key="character.id"
                 class="border-dotted border-t-2 border-slate-700 hover:cursor-pointer"
             >
-                <div class="grid grid-cols-4 min-h-16 items-center text-center">
-                    <div id="buttons-left" class="flex flex-col gap-y-2">
+                <div
+                    class="grid grid-cols-4 min-h-16 items-center text-center"
+                    @pointerdown="openContextMenu()"
+                >
+                    <div
+                        id="buttons-left"
+                        class="flex flex-col gap-y-2 ml-1 my-1"
+                    >
+                        <button
+                            @pointerdown="isHolding = !isHolding"
+                            @pointerup="isHolding = !isHolding"
+                        >
+                            {{ isHolding }}
+                        </button>
                         <button
                             class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
                             @click="addFailure((selected = character.id))"
@@ -73,7 +85,10 @@
                             </div>
                         </div>
                     </div>
-                    <div id="buttons-right" class="flex flex-col gap-y-2">
+                    <div
+                        id="buttons-right"
+                        class="flex flex-col gap-y-2 mr-1 my-1"
+                    >
                         <button
                             class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
                             @click="addSuccess((selected = character.id))"
@@ -112,12 +127,10 @@ const statusStore = useStatusStore();
 
 const selected = ref("");
 
-// const selected = ref(false);
-
-// const selectCharacter = (characterID) => {
-//     selected.value = !selected.value;
-//     statusStore.selectedCharacter(characterID);
-// };
+const openContextMenu = () => {
+    console.log("oq ta contecendu?");
+};
+const isHolding = ref(false);
 
 const addFailure = (selected) => {
     statusStore.addCharacterFailure(selected);
