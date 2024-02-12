@@ -1,6 +1,7 @@
 <script setup>
 import StatusTable from "./components/StatusTable.vue";
 import ButtonSection from "./components/ButtonSection.vue";
+import ButtonsBar from "./components/ButtonsBar.vue";
 </script>
 
 <template>
@@ -13,7 +14,8 @@ import ButtonSection from "./components/ButtonSection.vue";
         <main class="mt-1 md:mt-5 pb-5">
             <div class="md:flex md:justify-center md:mx-3 md:gap-x-2">
                 <StatusTable />
-                <ButtonSection />
+                <!-- <ButtonSection /> -->
+                <ButtonsBar />
             </div>
         </main>
     </div>
