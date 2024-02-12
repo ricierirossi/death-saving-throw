@@ -44,9 +44,9 @@ export const useStatusStore = defineStore("savings", {
             });
             this.persistToLocalStorage();
         },
-        clearSavings() {
+        clearSavings(selected) {
             this.characters.forEach((character) => {
-                if (character.selected === true) {
+                if (character.id === selected) {
                     character.failures = 0;
                     character.successess = 0;
                 }
@@ -67,9 +67,9 @@ export const useStatusStore = defineStore("savings", {
                 }
             });
         },
-        removeCharacter() {
+        removeCharacter(selectedID) {
             this.characters = this.characters.filter((character) => {
-                return character.selected === false;
+                return character.id !== selectedID;
             });
             this.persistToLocalStorage();
         },
