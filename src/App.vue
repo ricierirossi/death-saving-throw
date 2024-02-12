@@ -5,7 +5,9 @@ import ButtonsBar from "./components/ButtonsBar.vue";
 </script>
 
 <template>
-    <div class="min-h-screen gradient bg-cover bg-bottom text-zinc-300">
+    <div
+        class="min-h-screen gradient bg-cover bg-bottom text-zinc-300 select-none"
+    >
         <header>
             <h1 class="py-2 md:pt-8 text-center text-4xl">
                 Death Saving Throw
