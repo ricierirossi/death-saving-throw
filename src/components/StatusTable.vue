@@ -1,6 +1,6 @@
 <template>
     <div
-        class="mx-1 md:mx-0 rounded-md max-h-[360px] md:max-h-screen overflow-x-hidden overflow-y-auto"
+        class="mx-1 md:mx-0 rounded-md max-h-[600px] md:max-h-screen overflow-x-hidden overflow-y-auto"
         :class="
             ({ 'bg-transparent': statusStore.characters.length < 1 },
             { 'bg-transparent-blue': statusStore.characters.length > 0 })
@@ -21,14 +21,15 @@
             >
                 <div
                     class="grid grid-cols-4 min-h-16 items-center text-center relative"
-                    @pointerdown="onHolding(), (isHolding = true)"
-                    @pointerup="isHolding = false"
+                    @pointerdown="onHolding((selected = character.id))"
+                    @pointerup="stopTimer"
                 >
-                    <ContextMenu v-if="showContextMenu" />
-                    <div
-                        id="buttons-left"
-                        class="flex flex-col gap-y-2 ml-1 my-1"
-                    >
+                    <ContextMenu
+                        v-if="showContextMenu && character.id === selected"
+                        :selected="selected"
+                        @close-context-menu="closeContextMenu"
+                    />
+                    <div class="flex flex-col gap-y-2 ml-1 my-1">
                         <button
                             class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
                             @click="addFailure((selected = character.id))"
@@ -81,10 +82,7 @@
                             </div>
                         </div>
                     </div>
-                    <div
-                        id="buttons-right"
-                        class="flex flex-col gap-y-2 mr-1 my-1"
-                    >
+                    <div class="flex flex-col gap-y-2 mr-1 my-1">
                         <button
                             class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
                             @click="addSuccess((selected = character.id))"
@@ -122,18 +120,23 @@ import { ref } from "vue";
 
 const statusStore = useStatusStore();
 const selected = ref("");
-const isHolding = ref(false);
 const showContextMenu = ref(false);
+const timerID = ref("");
 
 const onHolding = () => {
-    setTimeout(openContextMenu, 1200);
+    timerID.value = setTimeout(openContextMenu, 2000);
+};
+
+const stopTimer = () => {
+    clearTimeout(timerID.value);
 };
 
 const openContextMenu = () => {
-    if (isHolding.value) {
-        showContextMenu.value = true;
-    }
-    return;
+    showContextMenu.value = true;
+};
+
+const closeContextMenu = () => {
+    showContextMenu.value = false;
 };
 
 const addFailure = (selected) => {
