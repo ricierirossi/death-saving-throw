@@ -1,9 +1,40 @@
 <template>
     <div class="absolute bottom-0 w-full">
         <div
-            class="flex items-center px-4 w-full h-10 text-lg font-bold bg-blue-950 rounded-t-md"
+            v-if="showMenu != ''"
+            class="flex items-center px-4 w-full h-12 text-lg font-bold bg-blue-950 rounded-t-md"
         >
-            <div v-if="!showD20" class="flex w-full justify-between">
+            <div
+                v-if="showMenu === 'menu'"
+                class="flex justify-around items-center w-full h-full"
+            >
+                <button
+                    class="bg-gray-950 hover:bg-gray-900 rounded-md p-4 flex justify-center items-center h-8"
+                    @click="removeAll"
+                >
+                    Remove all
+                </button>
+                <button
+                    class="bg-gray-600 hover:bg-gray-500 rounded-md p-4 flex justify-center items-center h-8"
+                    @click="clearAll"
+                >
+                    Clear all
+                </button>
+            </div>
+            <div
+                v-if="showMenu === 'd20'"
+                class="w-full text-center"
+                :class="{
+                    'text-red-600': diceThrow === 1,
+                    'text-green-600': diceThrow === 20,
+                }"
+            >
+                {{ diceThrow }}
+            </div>
+            <div
+                v-if="showMenu === 'character'"
+                class="flex w-full justify-between"
+            >
                 <input
                     type="text"
                     placeholder="New character's name"
@@ -22,36 +53,46 @@
                     />
                 </div>
             </div>
-            <div
-                v-if="showD20"
-                class="w-full text-center"
-                :class="{
-                    'text-red-600': diceThrow === 1,
-                    'text-green-600': diceThrow === 20,
-                }"
-            >
-                {{ diceThrow }}
-            </div>
         </div>
         <div
-            class="bg-strong-blue grid grid-cols-3 text-center hover:cursor-pointer"
+            class="grid grid-cols-3 items-center bg-strong-blue hover:cursor-pointer"
         >
             <span
-                class="hover:bg-blue-950 p-2 flex items-center justify-center h-full"
-                @click="clearAll"
-                >Clear All</span
+                class="w-full h-10 flex items-center justify-center hover:bg-blue-950"
+                @click="toggleOption('menu')"
             >
-
+                <img
+                    src="../assets/icons/menu.svg"
+                    alt="Menu"
+                    class="flex justify-center"
+                    width="32"
+                    height="32"
+                />
+            </span>
             <span
-                class="hover:bg-blue-950 p-2 flex items-center justify-center h-full"
-                @click="rollDice(), (showD20 = true)"
-                >Roll d20</span
+                class="w-full h-10 flex items-center justify-center hover:bg-blue-950"
+                @click="rollDice(), toggleOption('d20')"
             >
+                <img
+                    src="../assets/icons/d20.svg"
+                    alt="Roll d20"
+                    class="flex justify-center"
+                    width="32"
+                    height="32"
+                />
+            </span>
             <span
-                class="hover:bg-blue-950 p-2 flex items-center justify-center h-full"
-                @click="showD20 = false"
-                >Add Character</span
+                class="w-full h-10 flex items-center justify-center hover:bg-blue-950"
+                @click="toggleOption('character')"
             >
+                <img
+                    src="../assets/icons/person.svg"
+                    alt="Add Character"
+                    class="flex justify-center"
+                    width="32"
+                    height="32"
+                />
+            </span>
         </div>
     </div>
 </template>
@@ -63,7 +104,7 @@ import { ref } from "vue";
 const statusStore = useStatusStore();
 const characterName = ref("");
 const diceThrow = ref("");
-const showD20 = ref(false);
+const showMenu = ref("");
 
 const insertCharacter = () => {
     if (characterName.value) {
@@ -77,9 +118,26 @@ const insertCharacter = () => {
     characterName.value = "";
 };
 
+const toggleOption = (option) => {
+    if (showMenu.value === "menu" || showMenu.value === "character") {
+        if (option != showMenu.value) {
+            showMenu.value = option;
+            return;
+        }
+        showMenu.value = "";
+        return;
+    }
+    showMenu.value = option;
+};
 const clearAll = () => {
     statusStore.clearAllSavings();
     diceThrow.value = "";
+    showMenu.value = "";
+};
+
+const removeAll = () => {
+    statusStore.removeAllCharacters();
+    showMenu.value = "";
 };
 
 const rollDice = () => {
