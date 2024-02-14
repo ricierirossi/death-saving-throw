@@ -8,7 +8,7 @@
     >
         <div>
             <div
-                class="sticky top-0 grid grid-cols-4 items-center text-center min-h-12 rounded-md bg-strong-blue z-10"
+                class="sticky top-0 grid grid-cols-4 items-center text-center min-h-12 rounded-md bg-strong-blue z-20"
             >
                 <span class="col-start-1 col-end-2">Failures</span>
                 <span class="col-start-2 col-end-4">Character</span>
@@ -124,7 +124,7 @@ const showContextMenu = ref(false);
 const timerID = ref("");
 
 const onHolding = () => {
-    timerID.value = setTimeout(openContextMenu, 2000);
+    timerID.value = setTimeout(openContextMenu, 1000);
 };
 
 const stopTimer = () => {
