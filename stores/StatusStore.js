@@ -73,5 +73,9 @@ export const useStatusStore = defineStore("savings", {
             });
             this.persistToLocalStorage();
         },
+        removeAllCharacters() {
+            this.characters = [];
+            this.persistToLocalStorage();
+        },
     },
 });
