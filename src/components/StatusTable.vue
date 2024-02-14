@@ -1,10 +1,6 @@
 <template>
     <div
-        class="mx-1 md:mx-0 rounded-md max-h-[600px] md:max-h-screen overflow-x-hidden overflow-y-auto"
-        :class="
-            ({ 'bg-transparent': statusStore.characters.length < 1 },
-            { 'bg-transparent-blue': statusStore.characters.length > 0 })
-        "
+        class="mx-1 md:mx-0 rounded-lg max-h-[600px] md:max-h-screen lg:max-w-[1000px] overflow-x-hidden overflow-y-auto lg:grow"
     >
         <div>
             <div
@@ -17,7 +13,7 @@
             <div
                 v-for="(character, key) in statusStore.characters"
                 :key="character.id"
-                class="border-dotted border-t-2 border-slate-700 hover:cursor-pointer"
+                class="rounded-lg hover:cursor-pointer bg-strong-blue my-2"
             >
                 <div
                     class="grid grid-cols-4 min-h-16 items-center text-center relative"
