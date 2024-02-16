@@ -21,15 +21,15 @@
                     Clear all
                 </button>
             </div>
-            <div
-                v-if="showMenu === 'd20'"
-                class="w-full text-center"
-                :class="{
-                    'text-red-600': diceThrow === 1,
-                    'text-green-600': diceThrow === 20,
-                }"
-            >
-                {{ diceThrow }}
+            <div v-if="showMenu === 'd20'" class="w-full text-center">
+                d20:
+                <span
+                    :class="{
+                        'text-red-600': diceThrow === 1,
+                        'text-green-600': diceThrow === 20,
+                    }"
+                    >{{ diceThrow }}</span
+                >
             </div>
             <div
                 v-if="showMenu === 'character'"
@@ -55,10 +55,10 @@
             </div>
         </div>
         <div
-            class="grid grid-cols-3 items-center bg-strong-blue hover:cursor-pointer"
+            class="grid grid-cols-3 h-12 items-center bg-oxford-blue hover:cursor-pointer"
         >
             <span
-                class="w-full h-10 flex items-center justify-center hover:bg-blue-950"
+                class="w-full h-full flex items-center justify-center hover:bg-blue-950"
                 @click="toggleOption('menu')"
             >
                 <img
@@ -70,7 +70,7 @@
                 />
             </span>
             <span
-                class="w-full h-10 flex items-center justify-center hover:bg-blue-950"
+                class="w-full h-full flex items-center justify-center hover:bg-blue-950 animate-pulse"
                 @click="rollDice(), toggleOption('d20')"
             >
                 <img
@@ -82,7 +82,7 @@
                 />
             </span>
             <span
-                class="w-full h-10 flex items-center justify-center hover:bg-blue-950"
+                class="w-full h-full flex items-center justify-center hover:bg-blue-950"
                 @click="toggleOption('character')"
             >
                 <img
