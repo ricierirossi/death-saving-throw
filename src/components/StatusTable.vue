@@ -4,20 +4,34 @@
     >
         <div>
             <div
-                class="sticky top-0 grid grid-cols-4 items-center text-center min-h-12 rounded-md bg-strong-blue z-20"
+                class="sticky top-0 grid grid-cols-3 items-center text-center min-h-12 rounded-md bg-oxford-blue z-20"
+                :class="{ 'grid-cols-4': windowSize >= breakPoint }"
             >
                 <span class="col-start-1 col-end-2">Failures</span>
-                <span class="col-start-2 col-end-4">Character</span>
-                <span class="col-start-4 col-end-5">Successes</span>
+                <span class="col-start-2 col-end-3">Character</span>
+                <span class="col-start-3 col-end-4">Successes</span>
+            </div>
+            <div
+                v-if="statusStore.characters.length === 0"
+                class="text-center text-oxford-blue"
+            >
+                Please, add a character.
             </div>
             <div
                 v-for="(character, key) in statusStore.characters"
                 :key="character.id"
-                class="rounded-lg hover:cursor-pointer bg-strong-blue my-2"
+                class="rounded-lg hover:cursor-pointer bg-oxford-blue my-2"
             >
                 <div
-                    class="grid grid-cols-4 min-h-16 items-center text-center relative"
-                    @pointerdown="onHolding((selected = character.id))"
+                    class="grid grid-cols-custom min-h-16 items-center text-center relative"
+                    :class="{ 'grid-cols-4': windowSize >= breakPoint }"
+                    @pointerdown="
+                        onHolding(
+                            windowSize,
+                            breakPoint,
+                            (selected = character.id)
+                        )
+                    "
                     @pointerup="stopTimer"
                 >
                     <ContextMenu
@@ -25,9 +39,11 @@
                         :selected="selected"
                         @close-context-menu="closeContextMenu"
                     />
-                    <div class="flex flex-col gap-y-2 ml-1 my-1">
+                    <div
+                        class="flex flex-col gap-y-2 ml-1 my-1 col-start-1 col-end-2 items-center grow-"
+                    >
                         <button
-                            class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
+                            class="bg-poppy-dark hover:bg-poppy rounded-md flex justify-center h-8 max-w-32 w-full"
                             @click="addFailure((selected = character.id))"
                         >
                             <img
@@ -38,7 +54,7 @@
                             />
                         </button>
                         <button
-                            class="bg-red-900 hover:bg-red-800 rounded-md flex justify-center h-8"
+                            class="bg-poppy-dark hover:bg-poppy rounded-md flex justify-center h-8 max-w-32 w-full"
                             @click="removeFailure((selected = character.id))"
                         >
                             <img
@@ -50,9 +66,7 @@
                             />
                         </button>
                     </div>
-                    <div
-                        class="col-start-2 col-span-2 grid grid-rows-2 gap-y-2"
-                    >
+                    <div class="col-start-2 col-end-3 grid grid-rows-2 gap-y-2">
                         <span
                             class="overflow-x-hidden text-center text-lg font-semibold"
                             >{{ character.name }}
@@ -78,9 +92,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-y-2 mr-1 my-1">
+                    <div
+                        class="flex flex-col gap-y-2 mr-1 my-1 col-start-3 col-end-4 items-center"
+                    >
                         <button
-                            class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
+                            class="bg-viridian-dark hover:bg-viridian rounded-md flex justify-center h-8 max-w-32 w-full"
                             @click="addSuccess((selected = character.id))"
                         >
                             <img
@@ -91,7 +107,7 @@
                             />
                         </button>
                         <button
-                            class="bg-green-900 hover:bg-green-800 rounded-md flex justify-center h-8"
+                            class="bg-viridian-dark hover:bg-viridian rounded-md flex justify-center h-8 max-w-32 w-full"
                             @click="removeSuccess((selected = character.id))"
                         >
                             <img
@@ -101,6 +117,29 @@
                                 height="24"
                                 class="rotate-180"
                             />
+                        </button>
+                    </div>
+                    <div
+                        class="flex flex-col gap-y-2 mr-1 my-1 col-start-4 col-end-5 items-center"
+                        :class="{ hidden: windowSize < breakPoint }"
+                    >
+                        <button
+                            class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md max-h-8 w-32 flex items-center justify-center"
+                            @click="
+                                clearSavings(selected),
+                                    $emit('closeContextMenu')
+                            "
+                        >
+                            Clear Savings
+                        </button>
+                        <button
+                            class="bg-poppy-dark hover:bg-poppy py-2 px-4 rounded-md max-h-8 w-32 text-xs flex items-center justify-center"
+                            @click="
+                                removeCharacter(selected),
+                                    $emit('closeContextMenu')
+                            "
+                        >
+                            Delete Character
                         </button>
                     </div>
                 </div>
@@ -119,8 +158,15 @@ const selected = ref("");
 const showContextMenu = ref(false);
 const timerID = ref("");
 
-const onHolding = () => {
-    timerID.value = setTimeout(openContextMenu, 1000);
+defineProps({
+    windowSize: Number,
+    breakPoint: Number,
+});
+
+const onHolding = (windowSize, breakPoint) => {
+    if (windowSize < breakPoint) {
+        timerID.value = setTimeout(openContextMenu, 1000);
+    }
 };
 
 const stopTimer = () => {
