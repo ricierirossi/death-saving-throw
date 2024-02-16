@@ -22,7 +22,7 @@ onUnmounted(() => {
 
 <template>
     <div
-        class="min-h-screen gradient bg-cover bg-bottom text-zinc-300 select-none xl:flex xl:flex-col xl:justify-center"
+        class="min-h-screen gradient bg-cover bg-bottom text-zinc-300 select-none 2xl:flex 2xl:flex-col 2xl:justify-center"
     >
         <header>
             <h1 class="py-2 md:pt-8 text-center text-4xl">
@@ -31,16 +31,13 @@ onUnmounted(() => {
         </header>
         <main class="mt-1 md:mt-5 pb-5">
             <div class="md:mx-3 lg:flex lg:justify-around lg:gap-2">
-                <StatusTable />
+                <StatusTable
+                    :breakPoint="breakPoint"
+                    :windowSize="windowSize"
+                />
                 <ButtonsBar v-if="windowSize < breakPoint" />
                 <ButtonsBox v-if="windowSize >= breakPoint" />
             </div>
         </main>
     </div>
 </template>
-
-<style>
-.gradient {
-    background-image: linear-gradient(to bottom, #434343 0%, black 100%);
-}
-</style>
