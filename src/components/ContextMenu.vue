@@ -1,6 +1,6 @@
 <template>
     <div
-        class="bg-strong-blue py-2 px-4 rounded-md w-full h-full absolute z-10 flex justify-around items-center lg:justify-evenly"
+        class="bg-oxford-blue py-2 px-4 rounded-md w-full h-full absolute z-10 flex justify-around items-center lg:justify-evenly"
     >
         <button
             class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded-md max-h-9 flex items-center"
@@ -9,7 +9,7 @@
             Clear Savings
         </button>
         <button
-            class="bg-red-900 hover:bg-red-800 py-2 px-4 rounded-md max-h-9 flex items-center"
+            class="bg-poppy-dark hover:bg-poppy py-2 px-4 rounded-md max-h-9 flex items-center"
             @click="removeCharacter(selected), $emit('closeContextMenu')"
         >
             Delete Character
