@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.gradient {
+    background: hsla(0, 0%, 60%, 1);
+
+    background: radial-gradient(circle, hsla(0, 0%, 60%, 1) 0%, hsla(0, 0%, 26%, 1) 100%);
+    
+    background: -moz-radial-gradient(circle, hsla(0, 0%, 60%, 1) 0%, hsla(0, 0%, 26%, 1) 100%);
+    
+    background: -webkit-radial-gradient(circle, hsla(0, 0%, 60%, 1) 0%, hsla(0, 0%, 26%, 1) 100%);
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#9A9A9A", endColorstr="#434343", GradientType=1 );
+}
