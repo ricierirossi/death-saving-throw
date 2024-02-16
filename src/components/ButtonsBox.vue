@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex flex-col min-w-80 h-60 rounded-lg justify-around items-start px-5 bg-strong-blue"
+        class="flex flex-col min-w-80 h-60 rounded-lg justify-around items-start px-5 bg-oxford-blue"
     >
         <div class="flex justify-between w-full">
             <input
