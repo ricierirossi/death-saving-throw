@@ -7,11 +7,15 @@ export default {
                 background: "url('assets/images/background.webp')",
             },
             colors: {
-                "transparent-blue": "rgba(7, 2, 35, 0.9)",
-                "strong-blue": "rgb(7, 1, 39)",
+                "oxford-blue": "#070127",
+                "space-cadet": "#172554",
+                poppy: "#D64045",
+                "poppy-dark": "#B9272C",
+                viridian: "#498467",
+                "viridian-dark": "#2B4F3E",
             },
             gridTemplateColumns: {
-                custom: "1fr 80px 1fr 1fr 1fr",
+                custom: "0.5fr 1fr 0.5fr  ",
             },
         },
     },
