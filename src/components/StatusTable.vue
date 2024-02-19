@@ -35,7 +35,10 @@
                     @pointerup="stopTimer"
                 >
                     <ContextMenu
-                        v-if="showContextMenu && character.id === selected"
+                        v-if="
+                            showContextMenu &&
+                            character.id === selected &&
+                        "
                         :selected="selected"
                         @close-context-menu="closeContextMenu"
                     />
@@ -195,5 +198,13 @@ const addSuccess = (selected) => {
 
 const removeSuccess = (selected) => {
     statusStore.removeCharacterSuccess(selected);
+};
+
+const clearSavings = (selected) => {
+    statusStore.clearSavings(selected);
+};
+
+const removeCharacter = (selected) => {
+    statusStore.removeCharacter(selected);
 };
 </script>
