@@ -1,13 +1,14 @@
 <template>
     <div
         class="mx-1 md:mx-0 rounded-lg max-h-[600px] md:max-h-screen lg:max-w-[1000px] overflow-x-hidden overflow-y-auto lg:grow"
+        @pointerdown="closeContextMenu"
     >
         <div>
             <div
                 class="sticky top-0 grid grid-cols-3 items-center text-center min-h-12 rounded-md bg-oxford-blue z-20"
                 :class="{ 'grid-cols-4': windowSize >= breakPoint }"
             >
-                <span class="col-start-1 col-end-2">Failures</span>
+                <span class="col-start-1 col-end-2">Failures </span>
                 <span class="col-start-2 col-end-3">Character</span>
                 <span class="col-start-3 col-end-4">Successes</span>
             </div>
@@ -35,10 +36,7 @@
                     @pointerup="stopTimer"
                 >
                     <ContextMenu
-                        v-if="
-                            showContextMenu &&
-                            character.id === selected &&
-                        "
+                        v-if="showContextMenu && character.id === selected"
                         :selected="selected"
                         @close-context-menu="closeContextMenu"
                     />
@@ -160,6 +158,7 @@ const statusStore = useStatusStore();
 const selected = ref("");
 const showContextMenu = ref(false);
 const timerID = ref("");
+const holdingTime = ref(1300);
 
 defineProps({
     windowSize: Number,
@@ -168,7 +167,7 @@ defineProps({
 
 const onHolding = (windowSize, breakPoint) => {
     if (windowSize < breakPoint) {
-        timerID.value = setTimeout(openContextMenu, 1000);
+        timerID.value = setTimeout(openContextMenu, holdingTime.value);
     }
 };
 
