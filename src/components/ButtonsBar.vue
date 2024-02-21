@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute bottom-0 left-0 w-full">
+    <div class="fixed bottom-0 left-0 w-full">
         <div
             v-if="showMenu != ''"
             class="flex items-center px-4 w-full h-12 text-lg font-bold bg-blue-950 rounded-t-md"
@@ -98,8 +98,8 @@
 </template>
 
 <script setup>
-import { useStatusStore } from "../../stores/StatusStore";
 import { ref } from "vue";
+import { useStatusStore } from "../../stores/StatusStore";
 
 const statusStore = useStatusStore();
 const characterName = ref("");
