@@ -12,6 +12,23 @@ export const useStatusStore = defineStore("savings", {
             this.characters.push(character);
             this.persistToLocalStorage();
         },
+        selectedCharacter(characterID) {
+            this.characters.forEach((character) => {
+                if (character.id === characterID) {
+                    character.selected = !character.selected;
+                }
+            });
+        },
+        removeCharacter(selectedID) {
+            this.characters = this.characters.filter((character) => {
+                return character.id !== selectedID;
+            });
+            this.persistToLocalStorage();
+        },
+        removeAllCharacters() {
+            this.characters = [];
+            this.persistToLocalStorage();
+        },
         addCharacterFailure(selectedID) {
             this.characters.forEach((character) => {
                 if (character.id === selectedID) {
@@ -58,23 +75,6 @@ export const useStatusStore = defineStore("savings", {
                 character.failures = 0;
                 character.successess = 0;
             });
-            this.persistToLocalStorage();
-        },
-        selectedCharacter(characterID) {
-            this.characters.forEach((character) => {
-                if (character.id === characterID) {
-                    character.selected = !character.selected;
-                }
-            });
-        },
-        removeCharacter(selectedID) {
-            this.characters = this.characters.filter((character) => {
-                return character.id !== selectedID;
-            });
-            this.persistToLocalStorage();
-        },
-        removeAllCharacters() {
-            this.characters = [];
             this.persistToLocalStorage();
         },
     },
