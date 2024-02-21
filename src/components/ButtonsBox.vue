@@ -61,8 +61,8 @@
 </template>
 
 <script setup>
-import { useStatusStore } from "../../stores/StatusStore";
 import { ref } from "vue";
+import { useStatusStore } from "../../stores/StatusStore";
 
 const statusStore = useStatusStore();
 const characterName = ref("");
