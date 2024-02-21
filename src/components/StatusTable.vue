@@ -158,7 +158,7 @@ const statusStore = useStatusStore();
 const selected = ref("");
 const showContextMenu = ref(false);
 const timerID = ref("");
-const holdingTime = ref(1300);
+const holdingTime = ref(2000);
 
 defineProps({
     windowSize: Number,
